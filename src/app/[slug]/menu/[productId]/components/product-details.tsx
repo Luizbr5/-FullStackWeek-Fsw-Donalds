@@ -17,8 +17,8 @@ interface ProductDetailsProps {
 }
 
 const ProductDetails = ({ product }:ProductDetailsProps) => {
-    const { toggleCart} = useContext(CartContext);
-    const[Quantity, setQuantity] = useState<number>(1);
+    const { toggleCart, addProduct} = useContext(CartContext);
+    const[quantity, setQuantity] = useState<number>(1);
     const handleDecreaseQuantity = () => {
         setQuantity((prev) => {
             if (prev === 1) {return 1;} return prev - 1;
@@ -27,7 +27,13 @@ const ProductDetails = ({ product }:ProductDetailsProps) => {
     const handleIncreaseQuantity = () => {
         setQuantity((prev) => prev + 1);
     };
-    const handleAddToCart = () => {toggleCart()};
+    const handleAddToCart = () => {
+        addProduct({
+            ...product,
+           quantity,
+        });
+        toggleCart()
+    };
 
     return ( 
         <>
@@ -49,7 +55,7 @@ const ProductDetails = ({ product }:ProductDetailsProps) => {
                         <Button variant="outline" className="h-8 w-8 rounded-xl" onClick={handleDecreaseQuantity}>
                             <ChevronLeftIcon/>
                         </Button>
-                        <p className="w-4">{Quantity}</p>
+                        <p className="w-4">{quantity}</p>
                         <Button variant="destructive" className="h-8 w-8 rounded-xl" onClick={handleIncreaseQuantity}>
                             <ChevronRightIcon/>
                         </Button>
