@@ -1,4 +1,5 @@
 import * as React from "react"
+export { Card, CardContent,CardDescription, CardFooter, CardHeader, CardTitle }
 
 import { cn } from "@/lib/utils"
 
@@ -76,4 +77,4 @@ const CardFooter = React.forwardRef<
 ))
 CardFooter.displayName = "CardFooter"
 
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
+
